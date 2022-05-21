@@ -1,0 +1,30 @@
+.new-oxygen-dialog {
+  max-height: 98% !important;
+
+  .e-dlg-content {
+    #new-oxygen-form {
+      .field-container {
+        padding-bottom: 16px;
+      }
+
+      .oxygen-container {
+        display: flex;
+
+        .water-capacity {
+          padding-right: 8px;
+          flex: 1;
+        }
+
+        .oxygen-capacity {
+          padding-left: 8px;
+          flex: 1;
+        }
+      }
+
+      .oxygen-container .name-container .price-container {
+        padding-left: 8px;
+        flex: 1;
+      }
+    }
+  }
+}

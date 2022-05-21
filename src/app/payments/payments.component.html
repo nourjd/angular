@@ -1,0 +1,56 @@
+<div id='payment-wrapper' class="planner-payment-wrapper">
+    <header>
+        <div class="module-title">
+            <div class='title'>PAYMENTS LIST</div>
+            <div class='underline'></div>
+        </div>
+    </header>
+    <div class="payments-detail-wrapper">
+        <div class="payment-operations">
+            <div id='searchTemplate' class='search-wrapper planner-payment-search'>
+                <div class="e-input-group" role="search">
+                    <input id="schedule_searchbar" class="e-input" name="input" type="search"
+                        placeholder="Search Payment" (keyup)="paymentSearch($event)" />
+                    <span class="e-clear-icon" aria-label="close" role="button"
+                        (click)="paymentSearchCleared($event)"></span>
+                    <span id="schedule_searchbutton" class="e-input-group-icon search-icon e-icons" tabindex="-1"
+                        title="Search" aria-label="search"></span>
+                </div>
+            </div>
+        </div>
+        <div class="payment-display">
+            <ejs-grid #gridObj [dataSource]='filteredPayments'>
+                <e-columns>
+                    <e-column field='id' headerText='Bill No' width='80' textAlign='Left'></e-column>
+                    <e-column field='patient' headerText='Patient Name' width='100' textAlign='Left'></e-column>
+                    <e-column field='supplier' headerText='Supplier Name' width='100' textAlign='Left'></e-column>
+                    <e-column field='oxygen' headerText='Oxygen ID' width='100' textAlign='Left'></e-column>
+                    <e-column field='date' headerText='Created At' width='100' textAlign='Left'></e-column>
+                    <e-column field='price' headerText='Price' width='100' textAlign='Left'>
+                        <ng-template #template let-data>
+                            <span>{{data.price}} DT</span>
+                        </ng-template>
+                    </e-column>
+                    <e-column field='tax' headerText='Tax' width='100' textAlign='Left'>
+                        <ng-template #template let-data>
+                            <span>{{data.tax}} %</span>
+                        </ng-template>
+                    </e-column>
+                    <e-column field='total' headerText='Total' width='100' textAlign='Left'>
+                        <ng-template #template let-data>
+                            <span>{{data.total}} DT</span>
+                        </ng-template>
+                    </e-column>
+                </e-columns>
+            </ejs-grid>
+        </div>
+    </div>
+<div class="mdc-touch-target-wrapper">
+    <button class="mdc-fab mdc-fab--mini mdc-fab--touch" (click)='onAddPayment()'>
+        <div class="mdc-fab__ripple"></div>
+        <span class="material-icons mdc-fab__icon">add</span>
+        <div class="mdc-fab__touch"></div>
+    </button>
+</div>
+</div>
+<app-add-edit-payment #addEditPaymentObj (refreshEvent)="gridRefresh()"></app-add-edit-payment>
